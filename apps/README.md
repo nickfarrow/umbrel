@@ -58,7 +58,7 @@ CMD ["npm", "start"]
 - [x] Uses remote assets that are verified against a checksum.
 - [x] Results in deterministic image builds.
 
-3\. We're now ready to build the Docker image of BTC RPC Explorer. Umbrel supports both 64-bit ARM and x86 architectures, so we'll use `docker buildx` to build, tag, and push multi-architecture Docker images of our app to Docker Hub.
+3\. We're now ready to build the Docker image of BTC RPC Explorer. First, ensure you have created a repository like `username/app` on (Docker Hub)[https://hub.docker.com/]. Umbrel supports both 64-bit ARM and x86 architectures, so we'll use `docker buildx` to build, tag, and push multi-architecture Docker images of our app to Docker Hub.
 
 ```sh
 docker buildx build --platform linux/arm64,linux/amd64 --tag getumbrel/btc-rpc-explorer:v2.0.2 --output "type=registry" .
@@ -66,6 +66,7 @@ docker buildx build --platform linux/arm64,linux/amd64 --tag getumbrel/btc-rpc-e
 
 > You need to enable ["experimental features"](https://docs.docker.com/engine/reference/commandline/cli/#experimental-features) in Docker to use `docker buildx`.
 
+> You may also need to create a builder with `docker buildx create --use --name mybuilder` & `docker buildx use mybuilder`.
 ___
 
 ## 2. ☂️&nbsp;&nbsp;Packaging the app for Umbrel
